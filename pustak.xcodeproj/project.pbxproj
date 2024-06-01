@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		BE0791F82C0AEB0300424356 /* AdminMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0791F72C0AEB0300424356 /* AdminMainView.swift */; };
 		BE0791FD2C0AEB7900424356 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0791FC2C0AEB7900424356 /* DataModel.swift */; };
+		BE0792002C0B411900424356 /* isValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0791FF2C0B411900424356 /* isValidEmail.swift */; };
+		BE0792022C0B42B100424356 /* AdminHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0792012C0B42B100424356 /* AdminHomeView.swift */; };
+		BE0792042C0B43AF00424356 /* AdminProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0792032C0B43AF00424356 /* AdminProfileView.swift */; };
+		BE0792062C0B43F500424356 /* AdminLibrariansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0792052C0B43F500424356 /* AdminLibrariansView.swift */; };
+		BE0792082C0B440000424356 /* AdminLibrariesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0792072C0B440000424356 /* AdminLibrariesView.swift */; };
+		BE07920A2C0B44EE00424356 /* LibrarianMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0792092C0B44EE00424356 /* LibrarianMainView.swift */; };
+		BE07920C2C0B451600424356 /* LibrarianHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE07920B2C0B451600424356 /* LibrarianHomeView.swift */; };
+		BE07920E2C0B452200424356 /* LibrarianProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE07920D2C0B452200424356 /* LibrarianProfileView.swift */; };
+		BE0792122C0B461E00424356 /* roleDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0792112C0B461E00424356 /* roleDecider.swift */; };
+		BE0792162C0B4D4F00424356 /* loginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0792152C0B4D4F00424356 /* loginUser.swift */; };
 		BE3C93A72C0A35FE0020AF6B /* APINetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */; };
 		BE836B152C073FCF00F56789 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE836B142C073FCE00F56789 /* InputField.swift */; };
 		BEF185A42C064FB0006CCD05 /* pustakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185A32C064FB0006CCD05 /* pustakApp.swift */; };
@@ -23,6 +33,16 @@
 /* Begin PBXFileReference section */
 		BE0791F72C0AEB0300424356 /* AdminMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMainView.swift; sourceTree = "<group>"; };
 		BE0791FC2C0AEB7900424356 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		BE0791FF2C0B411900424356 /* isValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isValidEmail.swift; sourceTree = "<group>"; };
+		BE0792012C0B42B100424356 /* AdminHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeView.swift; sourceTree = "<group>"; };
+		BE0792032C0B43AF00424356 /* AdminProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfileView.swift; sourceTree = "<group>"; };
+		BE0792052C0B43F500424356 /* AdminLibrariansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLibrariansView.swift; sourceTree = "<group>"; };
+		BE0792072C0B440000424356 /* AdminLibrariesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLibrariesView.swift; sourceTree = "<group>"; };
+		BE0792092C0B44EE00424356 /* LibrarianMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarianMainView.swift; sourceTree = "<group>"; };
+		BE07920B2C0B451600424356 /* LibrarianHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarianHomeView.swift; sourceTree = "<group>"; };
+		BE07920D2C0B452200424356 /* LibrarianProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarianProfileView.swift; sourceTree = "<group>"; };
+		BE0792112C0B461E00424356 /* roleDecider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roleDecider.swift; sourceTree = "<group>"; };
+		BE0792152C0B4D4F00424356 /* loginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginUser.swift; sourceTree = "<group>"; };
 		BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetwork.swift; sourceTree = "<group>"; };
 		BE836B142C073FCE00F56789 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		BEF185A02C064FB0006CCD05 /* pustak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pustak.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +79,10 @@
 			isa = PBXGroup;
 			children = (
 				BE0791F72C0AEB0300424356 /* AdminMainView.swift */,
+				BE0792012C0B42B100424356 /* AdminHomeView.swift */,
+				BE0792052C0B43F500424356 /* AdminLibrariansView.swift */,
+				BE0792072C0B440000424356 /* AdminLibrariesView.swift */,
+				BE0792032C0B43AF00424356 /* AdminProfileView.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -66,6 +90,9 @@
 		BE0791F92C0AEB0800424356 /* Librarian */ = {
 			isa = PBXGroup;
 			children = (
+				BE0792092C0B44EE00424356 /* LibrarianMainView.swift */,
+				BE07920B2C0B451600424356 /* LibrarianHomeView.swift */,
+				BE07920D2C0B452200424356 /* LibrarianProfileView.swift */,
 			);
 			path = Librarian;
 			sourceTree = "<group>";
@@ -83,6 +110,16 @@
 				BE0791FC2C0AEB7900424356 /* DataModel.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		BE0791FE2C0B40F700424356 /* Helper Functions */ = {
+			isa = PBXGroup;
+			children = (
+				BE0791FF2C0B411900424356 /* isValidEmail.swift */,
+				BE0792112C0B461E00424356 /* roleDecider.swift */,
+				BE0792152C0B4D4F00424356 /* loginUser.swift */,
+			);
+			path = "Helper Functions";
 			sourceTree = "<group>";
 		};
 		BEF185972C064FB0006CCD05 = {
@@ -104,11 +141,12 @@
 		BEF185A22C064FB0006CCD05 /* pustak */ = {
 			isa = PBXGroup;
 			children = (
+				BE0791FE2C0B40F700424356 /* Helper Functions */,
 				BE0791FB2C0AEB6100424356 /* Data Model */,
 				BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */,
-				BEF185B82C071008006CCD05 /* Components */,
 				BEF185A32C064FB0006CCD05 /* pustakApp.swift */,
 				BEF185A52C064FB0006CCD05 /* ContentView.swift */,
+				BEF185B82C071008006CCD05 /* Components */,
 				BEF185B32C065B19006CCD05 /* Views */,
 				BEF185A72C064FB3006CCD05 /* Assets.xcassets */,
 				BEF185A92C064FB3006CCD05 /* Preview Content */,
@@ -214,15 +252,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0792082C0B440000424356 /* AdminLibrariesView.swift in Sources */,
 				BEF185B22C065ADD006CCD05 /* InitialView.swift in Sources */,
+				BE0792002C0B411900424356 /* isValidEmail.swift in Sources */,
 				BEF185BA2C0710B1006CCD05 /* NavLink.swift in Sources */,
 				BE836B152C073FCF00F56789 /* InputField.swift in Sources */,
+				BE0792022C0B42B100424356 /* AdminHomeView.swift in Sources */,
 				BEF185A62C064FB0006CCD05 /* ContentView.swift in Sources */,
+				BE07920E2C0B452200424356 /* LibrarianProfileView.swift in Sources */,
+				BE0792042C0B43AF00424356 /* AdminProfileView.swift in Sources */,
 				BEF185BC2C0711E5006CCD05 /* SignUpView.swift in Sources */,
+				BE07920A2C0B44EE00424356 /* LibrarianMainView.swift in Sources */,
+				BE0792162C0B4D4F00424356 /* loginUser.swift in Sources */,
+				BE0792122C0B461E00424356 /* roleDecider.swift in Sources */,
+				BE07920C2C0B451600424356 /* LibrarianHomeView.swift in Sources */,
 				BEF185A42C064FB0006CCD05 /* pustakApp.swift in Sources */,
 				BE3C93A72C0A35FE0020AF6B /* APINetwork.swift in Sources */,
 				BE0791F82C0AEB0300424356 /* AdminMainView.swift in Sources */,
 				BE0791FD2C0AEB7900424356 /* DataModel.swift in Sources */,
+				BE0792062C0B43F500424356 /* AdminLibrariansView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

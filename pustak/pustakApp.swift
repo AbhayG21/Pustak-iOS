@@ -11,7 +11,8 @@ import SwiftUI
 struct pustakApp: App {
     var body: some Scene {
         WindowGroup {
-            InitialView()
+//            AdminMainView()
+            ContentView()
         }
         
     }

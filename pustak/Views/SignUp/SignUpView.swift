@@ -13,17 +13,24 @@ struct SignUpView: View {
     @State private var phone: String = ""
     @State private var password: String = ""
     @State private var confirm: String = ""
+    var customNavigationTitle: some View {
+            HStack {
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+                Text("Custom Title")
+                    .font(.headline)
+                    .foregroundColor(.blue)
+            }
+        }
     var body: some View {
         NavigationStack {
-            ZStack {
-//                BackgroundCirclesView()
                 ScrollView {
                     VStack(alignment: .center, spacing: 48) {
                             VStack {
                                 Image("login")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width:200,height:200)
+                                    .frame(width:350,height:200)
                             }
                         VStack{
                             InputField(text: $name, placeholder: "Full name", cornerRadius: 10)
@@ -40,19 +47,21 @@ struct SignUpView: View {
                         }
                         
                             VStack {
-                                NavLink(text: "Proceed", cornerRadius: 10)
-                                    .disabled(email.isEmpty || password.isEmpty || name.isEmpty || phone.isEmpty || confirm.isEmpty || (password != confirm))
-//                                                .opacity(email.isEmpty || password.isEmpty || name.isEmpty || phone.isEmpty || confirm.isEmpty ? 0.5 : 1.0)
+                                NavigationLink(destination:InitialView()){
+                                    NavLink(text: "Create account", cornerRadius: 10)
+                                        .disabled(email.isEmpty || password.isEmpty || name.isEmpty || phone.isEmpty || confirm.isEmpty || (password != confirm))
+                                }
+
                             }
                             
                     }.padding(EdgeInsets(top: 48, leading: 16, bottom: 16, trailing: 16))
                         .scrollIndicators(.hidden)
                 }
+                .navigationTitle("Sign Up")
             }
             .background(.customBackground)
         }
     }
-}
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {

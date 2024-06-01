@@ -3,7 +3,7 @@
 //  pustak
 //
 //  Created by Abhay(IOS) on 31/05/24.
-//
+
 
 import Foundation
 
@@ -75,6 +75,8 @@ class AuthNetworkManager: ObservableObject{
         case .librarian:
             break;
         case .member:
+            break;
+        case .none :
             break;
         }
     }

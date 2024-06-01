@@ -12,11 +12,14 @@ enum Role: String, CaseIterable{
     case libraryAdmin = "Library Admin"
     case librarian = "Librarian"
     case member = "Member"
+    case none = "None"
 }
 
 enum Genre: String, CaseIterable{
     case fiction = "Fiction"
     case nonFiction = "Non-Fiction"
+    case comedy = "Comedy"
+    
     case fantasy = "Fantasy"
     case scienceFiction = "Science Fiction"
     case mysteryAndThriller = "Mystery & Thriller"
