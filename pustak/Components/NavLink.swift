@@ -8,19 +8,34 @@
 import Foundation
 import SwiftUI
 
-struct NavLink:View {
-    var text:String
-    var cornerRadius:CGFloat
-    
+import Foundation
+import SwiftUI
+
+struct NavLink: View {
+    var text: String
+    var cornerRadius: CGFloat
     var body: some View {
-        Text(text)
-            .fontWeight(.semibold)
-            .font(.system(size: 17))
-            .foregroundColor(.white)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .frame(height: 50)
-            .background(Color.customGreen)
-            .clipShape(RoundedRectangle(cornerRadius: 15))
+        if(text=="Sign Up"){
+            Text(text)
+                .fontWeight(.bold)
+                .foregroundColor(.customText)
+                .frame(maxWidth: .infinity)
+                .frame(height: 50)
+                .background(Color.accentColor)
+                .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+        }
+        else{
+            Text(text)
+                .fontWeight(.bold)
+                .foregroundColor(.customText)
+                .frame(maxWidth: .infinity)
+                .frame(height: 50)
+                .background(Color.accentColor)
+                .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+        }
+        
     }
+}
+#Preview{
+    InitialView()
 }

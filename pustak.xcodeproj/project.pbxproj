@@ -7,24 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE0791F82C0AEB0300424356 /* AdminMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0791F72C0AEB0300424356 /* AdminMainView.swift */; };
+		BE0791FD2C0AEB7900424356 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0791FC2C0AEB7900424356 /* DataModel.swift */; };
+		BE3C93A72C0A35FE0020AF6B /* APINetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */; };
+		BE836B152C073FCF00F56789 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE836B142C073FCE00F56789 /* InputField.swift */; };
 		BEF185A42C064FB0006CCD05 /* pustakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185A32C064FB0006CCD05 /* pustakApp.swift */; };
 		BEF185A62C064FB0006CCD05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185A52C064FB0006CCD05 /* ContentView.swift */; };
 		BEF185A82C064FB3006CCD05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF185A72C064FB3006CCD05 /* Assets.xcassets */; };
 		BEF185AB2C064FB3006CCD05 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF185AA2C064FB3006CCD05 /* Preview Assets.xcassets */; };
 		BEF185B22C065ADD006CCD05 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185B12C065ADD006CCD05 /* InitialView.swift */; };
-		BEF185B72C066BF1006CCD05 /* BackgroundCirclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185B62C066BF1006CCD05 /* BackgroundCirclesView.swift */; };
 		BEF185BA2C0710B1006CCD05 /* NavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185B92C0710B1006CCD05 /* NavLink.swift */; };
 		BEF185BC2C0711E5006CCD05 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185BB2C0711E4006CCD05 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE0791F72C0AEB0300424356 /* AdminMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMainView.swift; sourceTree = "<group>"; };
+		BE0791FC2C0AEB7900424356 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetwork.swift; sourceTree = "<group>"; };
+		BE836B142C073FCE00F56789 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		BEF185A02C064FB0006CCD05 /* pustak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pustak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF185A32C064FB0006CCD05 /* pustakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pustakApp.swift; sourceTree = "<group>"; };
 		BEF185A52C064FB0006CCD05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BEF185A72C064FB3006CCD05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEF185AA2C064FB3006CCD05 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BEF185B12C065ADD006CCD05 /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
-		BEF185B62C066BF1006CCD05 /* BackgroundCirclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCirclesView.swift; sourceTree = "<group>"; };
 		BEF185B92C0710B1006CCD05 /* NavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavLink.swift; sourceTree = "<group>"; };
 		BEF185BB2C0711E4006CCD05 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -40,6 +46,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE0791F52C0AEAB600424356 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				BEF185B12C065ADD006CCD05 /* InitialView.swift */,
+				BEF185BB2C0711E4006CCD05 /* SignUpView.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		BE0791F62C0AEAC100424356 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				BE0791F72C0AEB0300424356 /* AdminMainView.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		BE0791F92C0AEB0800424356 /* Librarian */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Librarian;
+			sourceTree = "<group>";
+		};
+		BE0791FA2C0AEB0F00424356 /* Member */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		BE0791FB2C0AEB6100424356 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE0791FC2C0AEB7900424356 /* DataModel.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
 		BEF185972C064FB0006CCD05 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +104,8 @@
 		BEF185A22C064FB0006CCD05 /* pustak */ = {
 			isa = PBXGroup;
 			children = (
+				BE0791FB2C0AEB6100424356 /* Data Model */,
+				BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */,
 				BEF185B82C071008006CCD05 /* Components */,
 				BEF185A32C064FB0006CCD05 /* pustakApp.swift */,
 				BEF185A52C064FB0006CCD05 /* ContentView.swift */,
@@ -80,9 +127,10 @@
 		BEF185B32C065B19006CCD05 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BEF185B12C065ADD006CCD05 /* InitialView.swift */,
-				BEF185BB2C0711E4006CCD05 /* SignUpView.swift */,
-				BEF185B62C066BF1006CCD05 /* BackgroundCirclesView.swift */,
+				BE0791FA2C0AEB0F00424356 /* Member */,
+				BE0791F92C0AEB0800424356 /* Librarian */,
+				BE0791F62C0AEAC100424356 /* Admin */,
+				BE0791F52C0AEAB600424356 /* SignUp */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -91,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				BEF185B92C0710B1006CCD05 /* NavLink.swift */,
+				BE836B142C073FCE00F56789 /* InputField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -167,10 +216,13 @@
 			files = (
 				BEF185B22C065ADD006CCD05 /* InitialView.swift in Sources */,
 				BEF185BA2C0710B1006CCD05 /* NavLink.swift in Sources */,
+				BE836B152C073FCF00F56789 /* InputField.swift in Sources */,
 				BEF185A62C064FB0006CCD05 /* ContentView.swift in Sources */,
-				BEF185B72C066BF1006CCD05 /* BackgroundCirclesView.swift in Sources */,
 				BEF185BC2C0711E5006CCD05 /* SignUpView.swift in Sources */,
 				BEF185A42C064FB0006CCD05 /* pustakApp.swift in Sources */,
+				BE3C93A72C0A35FE0020AF6B /* APINetwork.swift in Sources */,
+				BE0791F82C0AEB0300424356 /* AdminMainView.swift in Sources */,
+				BE0791FD2C0AEB7900424356 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +369,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = lms.pustak;
+				PRODUCT_BUNDLE_IDENTIFIER = librarymanagement.pustak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -346,7 +398,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = lms.pustak;
+				PRODUCT_BUNDLE_IDENTIFIER = librarymanagement.pustak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

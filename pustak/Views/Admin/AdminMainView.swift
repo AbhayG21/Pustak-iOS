@@ -1,18 +1,18 @@
 //
-//  SignUpView.swift
+//  AdminMainView.swift
 //  pustak
 //
-//  Created by Abhay(IOS) on 29/05/24.
+//  Created by Abhay(IOS) on 01/06/24.
 //
 
 import SwiftUI
 
-struct SignUpView: View {
+struct AdminMainView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    SignUpView()
+    AdminMainView()
 }
