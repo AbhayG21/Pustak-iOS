@@ -6,15 +6,6 @@ struct ContentView: View {
     @StateObject var adminManager = AdminManager()
     
     var body: some View {
-//        if(!userSession.isAuthenticated){
-//            InitialView().environmentObject(userSession)
-//        }else{
-//            // if-else lagake role based differentiation
-//                        AdminProfileView()
-//                            .environmentObject(userSession)
-//        }
-        
-        
         if(networkManager.isLoading)
         {
             ProgressView()
@@ -31,6 +22,7 @@ struct ContentView: View {
                             case .librarian:
                                 LibrarianMainView()
                                     .environmentObject(userSession)
+                                    .environmentObject(adminManager)
                             case .member:
                                 EmptyView()
                                     .environmentObject(userSession)

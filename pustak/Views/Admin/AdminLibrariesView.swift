@@ -8,31 +8,31 @@
 import SwiftUI
 
 struct AdminLibrariesView: View {
-//    @EnvironmentObject var auth:AuthNetworkManager
+    //    @EnvironmentObject var auth:AuthNetworkManager
     @EnvironmentObject var libraryManager:AdminManager
     @State var isShowingAddItemView = false
     var body: some View {
         NavigationStack{
-        if(libraryManager.isLoading){
-            ProgressView()
-                .onAppear(perform: {
-                    Task{
-                        do{
-                            try await libraryManager.fetchLibrary()
+            if(libraryManager.isLoading){
+                ProgressView()
+                    .onAppear(perform: {
+                        Task{
+                            do{
+                                try await libraryManager.fetchLibrary()
+                            }
+                            catch{}
                         }
-                        catch{}
+                    })
+                    .navigationTitle("Home")
+                    .toolbar{
+                        Button(action: {
+                            isShowingAddItemView = true
+                        }){
+                            Image(systemName: "plus")
+                        }
                     }
-                })
-                .navigationTitle("Home")
-                .toolbar{
-                    Button(action: {
-                        isShowingAddItemView = true
-                    }){
-                        Image(systemName: "plus")
-                    }
-                }
-        }else{
-            if(libraryManager.libraries.count == 0){
+            }else{
+                if(libraryManager.libraries.count == 0){
                     VStack (spacing: 12){
                         Image(systemName: "x.circle.fill")
                             .resizable()
@@ -53,20 +53,20 @@ struct AdminLibrariesView: View {
                         }
                     }
                 }else{
-                    List(libraryManager.libraries){library in
-                        HStack{
-                            VStack(alignment: .leading, spacing: -4){
-                                Text(library.libraryName)
-                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                    .font(.title2)
-                                Text(library.libraryEmail)
-                                    .fontWeight(.regular)
-                                    .fontDesign(.rounded)
+                    //                    List(libraryManager.libraries){library in
+                    //                        LibraryCard(library:library)
+                    //                            .padding(.top,5)
+                    //                            .listRowSeparator(.hidden)
+                    //                    }
+                    ScrollView{
+                        VStack(spacing: 10) {
+                            ForEach(libraryManager.libraries) { library in
+                                LibraryCard(library: library)
+                                    .padding(.horizontal)
                             }
-                            Spacer()
                         }
                     }
-                    .navigationTitle("Home")
+                    .navigationTitle("Libraries")
                     .toolbar{
                         Button(action: {
                             isShowingAddItemView = true
@@ -80,7 +80,6 @@ struct AdminLibrariesView: View {
         .sheet(isPresented: $isShowingAddItemView, content: {
             AddLibrary()
         })
-
     }
 }
 

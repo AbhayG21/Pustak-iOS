@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct AdminProfileView: View {
     @EnvironmentObject var userSession: UserSession
     @State private var showingLogoutAlert = false

@@ -58,3 +58,8 @@ struct AuthResponse:Codable{
 
     }
 }
+struct LibraryResponse: Codable{
+    var message: String
+    var libraries: [Library]
+    var librarians: [Librarian]
+}

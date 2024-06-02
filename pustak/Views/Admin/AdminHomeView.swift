@@ -9,10 +9,11 @@ import SwiftUI
 
 struct AdminHomeView: View {
     var body: some View {
-        Text("hi")
+        Text("Home Screen")
+            .font(.largeTitle)
     }
 }
 
-//#Preview {
-//    AdminHomeView()
-//}
+#Preview {
+    AdminHomeView()
+}

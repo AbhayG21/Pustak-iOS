@@ -20,8 +20,8 @@ struct LibrarianMainView: View {
             LibrarianHomeView().tabItem {
                 Label("Members", systemImage: "person.2.fill")
             }
-            LibrarianHomeView().tabItem {
-                Label("Profile", systemImage: "person.fill")
+            LibrarianProfileView().tabItem {
+                Label("Profile", systemImage: "person.crop.circle")
             }
         }
         .onAppear(perform: {

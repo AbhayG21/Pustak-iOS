@@ -40,47 +40,48 @@ class AuthNetworkManager: ObservableObject{
     @Published var isError: Bool = false
     @Published var errorMessage: String = ""
     
-    init(){
-        Task{
-            do{
-                guard let token = UserDefaults.standard.object(forKey: "token") as? String else { return }
-                guard let url = URL(string: "\(apiURL)verify") else { return }
-                DispatchQueue.main.async{
-                    self.isLoading = true
-                }
-                var request = URLRequest(url: url)
-                request.httpMethod = "POST"
-                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-                
-                let (_, response) = try await URLSession.shared.data(for: request)
-                
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    return
-                }
-                
-                if httpResponse.statusCode == 400 {
-                    DispatchQueue.main.async{
-                        print("400")
-                        self.isError = true
-                        self.errorMessage = "ERR 400: Bad Reqeust"
-                    }
-                }else if httpResponse.statusCode == 401 {
-                    DispatchQueue.main.async{
-                        print("401")
-                        self.isError = true
-                        self.errorMessage = "ERR 401: Unauthorized"
-                    }
-                }
-                DispatchQueue.main.async{
-                    self.isLoading = false
-                }
-                
-            }catch{
-                print("\(error)")
-            }
-        }
-        
-    }
+//    init(){
+//        Task{
+//            do{
+//                guard let token = UserDefaults.standard.object(forKey: "token") as? String else { return }
+//                print(token)
+//                guard let url = URL(string: "\(apiURL)verify") else { return }
+//                DispatchQueue.main.async{
+//                    self.isLoading = true
+//                }
+//                var request = URLRequest(url: url)
+//                request.httpMethod = "POST"
+//                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//                
+//                let (_, response) = try await URLSession.shared.data(for: request)
+//                
+//                guard let httpResponse = response as? HTTPURLResponse else {
+//                    return
+//                }
+//                
+//                if httpResponse.statusCode == 400 {
+//                    DispatchQueue.main.async{
+//                        print("400")
+//                        self.isError = true
+//                        self.errorMessage = "ERR 400: Bad Reqeust"
+//                    }
+//                }else if httpResponse.statusCode == 401 {
+//                    DispatchQueue.main.async{
+//                        print("401")
+//                        self.isError = true
+//                        self.errorMessage = "ERR 401: Unauthorized"
+//                    }
+//                }
+//                DispatchQueue.main.async{
+//                    self.isLoading = false
+//                }
+//                
+//            }catch{
+//                print("\(error)")
+//            }
+//        }
+//        
+//    }
     
     func loginUser(with data: Data) async throws{
 //        print(data)
@@ -89,8 +90,8 @@ class AuthNetworkManager: ObservableObject{
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = data
-        
         let (data, response) = try await URLSession.shared.data(for: request)
+        print(response)
         guard let httpResponse = response as? HTTPURLResponse else {
             return
         }
@@ -135,6 +136,7 @@ class AdminManager: ObservableObject{
     @Published var libraries: [Library] = []
     @Published var isLoading = false
     @Published var isError = false
+    @Published var errorMessage: String = ""
     
     func createLibrary(with library:Library) async throws
     {
@@ -171,6 +173,36 @@ class AdminManager: ObservableObject{
         }
         
     }
-}
+    
+    func assignLibrarian(with librarian:Librarian, auth token:String) async throws{
+        guard let url = URL(string: "\(apiURL)librarian/create") else { return }
+                
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                request.setValue("application/json", forHTTPHeaderField: "Content-type")
+                
+                let encodedData = try JSONEncoder().encode(librarian)
+                request.httpBody = encodedData
+                
+                let (_, response) = try await URLSession.shared.data(for: request)
+                
+                guard let response = response as? HTTPURLResponse else {return}
+                
+                DispatchQueue.main.async{
+                    switch response.statusCode{
+                    case 409:
+                        self.isError = true
+                        self.errorMessage = "Duplicate e-mails, please change the e-mail and request again"
+                    case 200:
+                        let idxToUpdate = self.libraries.firstIndex(where: {$0.id == librarian.assignedLibrary})!
+                        self.libraries[idxToUpdate].librarianAssigned = librarian.id
+                    default:
+                        break;
+                    }
+                }
+            }
+    }
+
 
 //throws, as? String nahi likha too?

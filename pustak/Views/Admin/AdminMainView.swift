@@ -14,9 +14,6 @@ struct AdminMainView: View {
             AdminHomeView().tabItem{
                 Label("Home",systemImage: "house.fill")
             }
-            AdminLibrariansView().tabItem{
-                Label("Librarians",systemImage: "person.3.fill")
-            }
             AdminLibrariesView().tabItem{
                 Label("Libraries",systemImage: "book.fill")
             }

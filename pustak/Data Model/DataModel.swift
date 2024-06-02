@@ -43,8 +43,10 @@ struct Librarian: Identifiable,Codable,User{
     let role: Role
     var name: String
     var email: String
-    let assignedLibrary : String
+    var admin: UUID
+    let assignedLibrary : UUID
     let phone : String
+    let personalEmail: String
 }
 
 struct LibraryAdmin: Identifiable,Codable,User{
@@ -89,7 +91,7 @@ struct Issues: Identifiable{
 
 struct Library: Identifiable, Codable{
     let id:UUID
-    let librarianAssigned: UUID?
+    var librarianAssigned: UUID?
     let libraryAdmin: UUID
     let libraryName: String
     let libraryContact: String
