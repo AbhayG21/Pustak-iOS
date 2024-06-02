@@ -26,7 +26,7 @@ enum Role: String, CaseIterable,Codable{
 }
 
 
-enum Genre: String, CaseIterable{
+enum Genre: String, CaseIterable,Codable{
     case fiction = "Fiction"
     case nonFiction = "Non-Fiction"
     case comedy = "Comedy"
@@ -87,26 +87,72 @@ struct Issues: Identifiable{
     let approved: Bool
 }
 
-struct Library: Identifiable{
-    let id = UUID()
-    let librarianAssigned: UUID
+struct Library: Identifiable, Codable{
+    let id:UUID
+    let librarianAssigned: UUID?
     let libraryAdmin: UUID
     let libraryName: String
     let libraryContact: String
-    let libraryAddress: String
+    let address: String
     let libraryEmail: String
     let books: [Books]
+    
+    enum CodingKeys: String, CodingKey {
+            case id
+            case librarianAssigned
+            case libraryAdmin
+            case libraryName
+            case libraryContact
+            case address
+            case libraryEmail = "email"
+            case books
+        }
+    
+    init(adminID: UUID, name: String, contact: String, address: String, email: String){
+            id = UUID()
+            librarianAssigned = nil
+            libraryAdmin = adminID
+            libraryName = name
+            libraryContact = contact
+            self.address = address
+            books =  []
+            libraryEmail = email
+        }
+    
+    init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            id = try container.decode(UUID.self, forKey: .id)
+            librarianAssigned = try container.decodeIfPresent(UUID.self, forKey: .librarianAssigned)
+        libraryAdmin = try container.decode(UUID.self, forKey: .libraryAdmin)
+            libraryName = try container.decode(String.self, forKey: .libraryName)
+            libraryContact = try container.decode(String.self, forKey: .libraryContact)
+            address = try container.decode(String.self, forKey: .address)
+            libraryEmail = try container.decode(String.self, forKey: .libraryEmail)
+            books = try container.decode([Books].self, forKey: .books)
+        }
+        
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(id, forKey: .id)
+            try container.encodeIfPresent(librarianAssigned, forKey: .librarianAssigned)
+            try container.encode(libraryAdmin, forKey: .libraryAdmin)
+            try container.encode(libraryName, forKey: .libraryName)
+            try container.encode(libraryContact, forKey: .libraryContact)
+            try container.encode(address, forKey: .address)
+            try container.encode(libraryEmail, forKey: .libraryEmail)
+            try container.encode(books, forKey: .books)
+        }
 }
 
-struct Books: Identifiable{
-    let id = UUID()
+struct Books: Identifiable,Codable{
+    let id:UUID
     let ISBN: String
+    let title: String
     let yearPublished: String
     let author: String
     let publisher: String
     let genre: Genre
     let nosPages: String
-    let title: String
     let libraryId: UUID
     let qty: String
 }

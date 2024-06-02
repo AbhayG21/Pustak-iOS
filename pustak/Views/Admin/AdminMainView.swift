@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AdminMainView: View {
+    @EnvironmentObject var libraryManager:AdminManager
     var body: some View {
         TabView{
             AdminHomeView().tabItem{
@@ -22,7 +23,11 @@ struct AdminMainView: View {
             AdminProfileView().tabItem{
                 Label("Profile",systemImage: "person.fill")
             }
-        }.navigationBarBackButtonHidden(true)
+        }
+        .onAppear(perform: {
+            libraryManager.isLoading = true
+        })
+        .navigationBarBackButtonHidden(true)
     }
         
 }

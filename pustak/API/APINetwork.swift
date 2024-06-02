@@ -11,21 +11,26 @@ class UserSession: ObservableObject{
     @Published var isAuthenticated: Bool = false
     @Published var role: Role
     @Published var token: String
+    @Published var uId: UUID
     
     init() {
 //        UserDefaults.standard.set(nil, forKey: "token")
         guard let token = UserDefaults.standard.object(forKey: "token") as? String,
               let roleString = UserDefaults.standard.object(forKey: "role") as? String,
-              let role = Role(rawValue: roleString)
+              let role = Role(rawValue: roleString),
+              let uuidString = UserDefaults.standard.object(forKey: "id") as? String,
+              let uId = UUID(uuidString: uuidString)
         else{
             self.isAuthenticated = false
             self.role = .member
             self.token = ""
+            self.uId = UUID()
             return
         }
         
         self.role = role
         self.token = token
+        self.uId = uId
         self.isAuthenticated = true
     }
 }
@@ -118,6 +123,7 @@ class AuthNetworkManager: ObservableObject{
             DispatchQueue.main.async{
                 UserDefaults.standard.set(decodedData.token, forKey: "token")
                 UserDefaults.standard.set(decodedData.role.rawValue, forKey: "role")
+                UserDefaults.standard.set(decodedData.id.uuidString,forKey: "id")
             }
         }catch{
             print("\(error)")
@@ -127,4 +133,44 @@ class AuthNetworkManager: ObservableObject{
 
 class AdminManager: ObservableObject{
     @Published var libraries: [Library] = []
+    @Published var isLoading = false
+    @Published var isError = false
+    
+    func createLibrary(with library:Library) async throws
+    {
+        guard let token = UserDefaults.standard.object(forKey: "token") as? String else {return}
+        guard let url = URL(string:"\(apiURL)library/create") else {return}
+        var request = URLRequest(url:url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        let jsonData = try JSONEncoder().encode(library)
+        request.httpBody = jsonData
+        let (_, response) = try await URLSession.shared.data(for:request)
+        print(response)
+        DispatchQueue.main.async{
+            self.libraries.insert(library, at: 0)
+            self.isLoading = false
+        }
+        
+    }
+    
+    func fetchLibrary() async throws{
+        guard let token = UserDefaults.standard.object(forKey: "token") as? String else {return}
+        guard let url = URL(string:"\(apiURL)library/") else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        print(request)
+        let (data, _) = try await URLSession.shared.data(for:request)
+        let libraries = try JSONDecoder().decode([Library].self, from: data)
+        print(libraries)
+        DispatchQueue.main.async{
+            self.libraries = libraries
+            self.isLoading = false
+        }
+        
+    }
 }
+
+//throws, as? String nahi likha too?

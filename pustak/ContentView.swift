@@ -3,7 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var userSession = UserSession()
     @StateObject var networkManager = AuthNetworkManager()
-    
+    @StateObject var adminManager = AdminManager()
     
     var body: some View {
 //        if(!userSession.isAuthenticated){
@@ -27,6 +27,7 @@ struct ContentView: View {
                             case .libraryAdmin:
                                 AdminMainView()
                                     .environmentObject(userSession)
+                                    .environmentObject(adminManager)
                             case .librarian:
                                 LibrarianMainView()
                                     .environmentObject(userSession)

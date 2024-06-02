@@ -8,16 +8,26 @@
 import SwiftUI
 
 struct LibrarianMainView: View {
+    @EnvironmentObject var libraryManager:AdminManager
     var body: some View {
         TabView{
-            LibrarianHomeView().tabItem{
-                Label("Home",systemImage: "house.fill")
+            LibrarianHomeView().tabItem {
+                Label("Library", systemImage: "books.vertical.fill")
             }
-            
-            LibrarianProfileView().tabItem{
-                Label("Profile",systemImage: "person.fill")
+            LibrarianHomeView().tabItem {
+                Label("Requests", systemImage: "tray.and.arrow.down.fill")
             }
-        }.navigationBarBackButtonHidden(true)
+            LibrarianHomeView().tabItem {
+                Label("Members", systemImage: "person.2.fill")
+            }
+            LibrarianHomeView().tabItem {
+                Label("Profile", systemImage: "person.fill")
+            }
+        }
+        .onAppear(perform: {
+            libraryManager.isLoading = true
+        })
+        .navigationBarBackButtonHidden(true)
     }
 }
 

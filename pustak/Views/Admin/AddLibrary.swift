@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct AddLibrary: View {
+    @Environment(\.dismiss) var dismiss
     @State private var libraryName:String = ""
     @State private var phone:String = ""
     @State private var email:String = ""
     @State private var address:String = ""
-    //    @EnvironmentObject var adminManager:AdminManager
-    //    @EnvironmentObject var userSession:UserSession
+    @EnvironmentObject var adminManager:AdminManager
+    @EnvironmentObject var userSession:UserSession
+    
+    private func isAddDisabled()->Bool{
+        return libraryName.isEmpty || phone.isEmpty || email.isEmpty || address.isEmpty
+    }
     var body: some View {
         NavigationStack{
             
@@ -21,7 +26,7 @@ struct AddLibrary: View {
                 Section("Library Name"){
                     TextField("Name",text:$libraryName)
                 }
-                Section("Contact Details"){
+                Section("Library Contact Details"){
                     TextField("Email",text:$email)
                     TextField("Phone",text:$phone)
                 }
@@ -30,20 +35,35 @@ struct AddLibrary: View {
                 }
             }
             .toolbar{
-                ToolbarItem(placement: .topBarLeading)
-                {
-                    Button(action:{})
-                    {
-                        Text("Cancel")
-                    }
-                }
+//                ToolbarItem(placement: .topBarLeading)
+//                {
+//                    Button(action:{
+//                    })
+//                    {
+//                        Text("Cancel")
+//                    }
+//                }
                 
                 ToolbarItem(placement: .topBarTrailing)
                 {
-                    Button(action:{})
+                    Button(action:{
+                        guard let id = UserDefaults.standard.object(forKey: "id") as? String else {return}
+                        
+                        
+                        let admId = UUID(uuidString: id)!
+                        
+                        let library = Library(adminID:admId, name: libraryName, contact: phone, address: address, email: email)
+                        Task{
+                            do{
+                                try await adminManager.createLibrary(with: library)
+                            }catch{}
+                        }
+                        dismiss()
+                    })
                     {
                         Text("Add")
                     }
+                    .disabled(isAddDisabled())
                 }
             }
             
@@ -51,6 +71,6 @@ struct AddLibrary: View {
     }
 }
 
-#Preview {
-    AddLibrary()
-}
+//#Preview {
+//    AddLibrary()
+//}

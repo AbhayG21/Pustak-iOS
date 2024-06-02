@@ -108,7 +108,6 @@ struct InitialView: View {
                                                 else {
                                                     return
                                                 }
-                                                print("m,sa")
                                                 userSession.role = role
                                                 userSession.token = token
                                                 userSession.isAuthenticated = true

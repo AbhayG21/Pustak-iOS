@@ -8,12 +8,14 @@
 import Foundation
 
 struct AuthResponse:Codable{
+    let id:UUID
     let message: String
     let token: String
     let role: Role
     let user: any User
     
     enum CodingKeys: String, CodingKey{
+        case id
         case message
         case token
         case role
@@ -22,6 +24,7 @@ struct AuthResponse:Codable{
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(UUID.self,forKey: .id)
         self.message = try container.decode(String.self, forKey: .message)
         self.token = try container.decode(String.self, forKey: .token)
         self.role = try container.decode(Role.self, forKey: .role)
