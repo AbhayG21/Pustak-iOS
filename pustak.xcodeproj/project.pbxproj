@@ -19,6 +19,10 @@
 		BE07920E2C0B452200424356 /* LibrarianProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE07920D2C0B452200424356 /* LibrarianProfileView.swift */; };
 		BE0792122C0B461E00424356 /* roleDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0792112C0B461E00424356 /* roleDecider.swift */; };
 		BE0792162C0B4D4F00424356 /* loginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0792152C0B4D4F00424356 /* loginUser.swift */; };
+		BE2E47A82C0C3F5500804CA7 /* API_URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E47A72C0C3F5500804CA7 /* API_URL.swift */; };
+		BE2E47AA2C0C402000804CA7 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E47A92C0C402000804CA7 /* Response.swift */; };
+		BE2E47AC2C0C7AE000804CA7 /* LibraryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E47AB2C0C7AE000804CA7 /* LibraryCard.swift */; };
+		BE2E47AE2C0C851C00804CA7 /* AddLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E47AD2C0C851C00804CA7 /* AddLibrary.swift */; };
 		BE3C93A72C0A35FE0020AF6B /* APINetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */; };
 		BE836B152C073FCF00F56789 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE836B142C073FCE00F56789 /* InputField.swift */; };
 		BEF185A42C064FB0006CCD05 /* pustakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185A32C064FB0006CCD05 /* pustakApp.swift */; };
@@ -43,6 +47,10 @@
 		BE07920D2C0B452200424356 /* LibrarianProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarianProfileView.swift; sourceTree = "<group>"; };
 		BE0792112C0B461E00424356 /* roleDecider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roleDecider.swift; sourceTree = "<group>"; };
 		BE0792152C0B4D4F00424356 /* loginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginUser.swift; sourceTree = "<group>"; };
+		BE2E47A72C0C3F5500804CA7 /* API_URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_URL.swift; sourceTree = "<group>"; };
+		BE2E47A92C0C402000804CA7 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		BE2E47AB2C0C7AE000804CA7 /* LibraryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCard.swift; sourceTree = "<group>"; };
+		BE2E47AD2C0C851C00804CA7 /* AddLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLibrary.swift; sourceTree = "<group>"; };
 		BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetwork.swift; sourceTree = "<group>"; };
 		BE836B142C073FCE00F56789 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		BEF185A02C064FB0006CCD05 /* pustak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pustak.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +91,7 @@
 				BE0792052C0B43F500424356 /* AdminLibrariansView.swift */,
 				BE0792072C0B440000424356 /* AdminLibrariesView.swift */,
 				BE0792032C0B43AF00424356 /* AdminProfileView.swift */,
+				BE2E47AD2C0C851C00804CA7 /* AddLibrary.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -122,6 +131,16 @@
 			path = "Helper Functions";
 			sourceTree = "<group>";
 		};
+		BE2E47A62C0C3F3B00804CA7 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */,
+				BE2E47A72C0C3F5500804CA7 /* API_URL.swift */,
+				BE2E47A92C0C402000804CA7 /* Response.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		BEF185972C064FB0006CCD05 = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +162,7 @@
 			children = (
 				BE0791FE2C0B40F700424356 /* Helper Functions */,
 				BE0791FB2C0AEB6100424356 /* Data Model */,
-				BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */,
+				BE2E47A62C0C3F3B00804CA7 /* API */,
 				BEF185A32C064FB0006CCD05 /* pustakApp.swift */,
 				BEF185A52C064FB0006CCD05 /* ContentView.swift */,
 				BEF185B82C071008006CCD05 /* Components */,
@@ -178,6 +197,7 @@
 			children = (
 				BEF185B92C0710B1006CCD05 /* NavLink.swift */,
 				BE836B142C073FCE00F56789 /* InputField.swift */,
+				BE2E47AB2C0C7AE000804CA7 /* LibraryCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -263,14 +283,18 @@
 				BE0792042C0B43AF00424356 /* AdminProfileView.swift in Sources */,
 				BEF185BC2C0711E5006CCD05 /* SignUpView.swift in Sources */,
 				BE07920A2C0B44EE00424356 /* LibrarianMainView.swift in Sources */,
+				BE2E47AA2C0C402000804CA7 /* Response.swift in Sources */,
 				BE0792162C0B4D4F00424356 /* loginUser.swift in Sources */,
 				BE0792122C0B461E00424356 /* roleDecider.swift in Sources */,
 				BE07920C2C0B451600424356 /* LibrarianHomeView.swift in Sources */,
 				BEF185A42C064FB0006CCD05 /* pustakApp.swift in Sources */,
 				BE3C93A72C0A35FE0020AF6B /* APINetwork.swift in Sources */,
+				BE2E47A82C0C3F5500804CA7 /* API_URL.swift in Sources */,
+				BE2E47AE2C0C851C00804CA7 /* AddLibrary.swift in Sources */,
 				BE0791F82C0AEB0300424356 /* AdminMainView.swift in Sources */,
 				BE0791FD2C0AEB7900424356 /* DataModel.swift in Sources */,
 				BE0792062C0B43F500424356 /* AdminLibrariansView.swift in Sources */,
+				BE2E47AC2C0C7AE000804CA7 /* LibraryCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

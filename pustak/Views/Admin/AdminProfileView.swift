@@ -55,7 +55,9 @@ struct AdminProfileView: View {
                     .alert("Are you sure you want to logout?", isPresented: $showingLogoutAlert) {
                         Button("Cancel", role: .cancel) { }
                         Button("Logout", role: .destructive) {
+                            UserDefaults.standard.set("",forKey: "token")
                              userSession.isAuthenticated = false
+                            
                         }
                     }
                     .padding(.top,12)
@@ -69,6 +71,6 @@ struct AdminProfileView: View {
 }
 
 
-#Preview {
-    AdminProfileView()
-}
+//#Preview {
+//    AdminProfileView()
+//}

@@ -8,12 +8,23 @@
 
 import Foundation
 
-enum Role: String, CaseIterable{
+
+protocol User: Codable, Identifiable{
+    var id: UUID { get }
+    var name: String { get }
+    var email: String { get }
+    var role: Role { get}
+    var phone: String { get }
+}
+
+
+
+enum Role: String, CaseIterable,Codable{
     case libraryAdmin = "Library Admin"
     case librarian = "Librarian"
     case member = "Member"
-    case none = "None"
 }
+
 
 enum Genre: String, CaseIterable{
     case fiction = "Fiction"
@@ -27,35 +38,32 @@ enum Genre: String, CaseIterable{
     case historical = "Historical"
 }
 
-struct Librarian: Identifiable{
-    let id = UUID()
-    let role: Role = .librarian
-    let librarianName :String
+struct Librarian: Identifiable,Codable,User{
+    let id:UUID
+    let role: Role
+    var name: String
+    var email: String
     let assignedLibrary : String
-    let officialEmail : String
-    let personalEmail : String
-    let mobNo : String
+    let phone : String
 }
 
-struct LibraryAdmin: Identifiable{
-    let id = UUID()
-    let role: Role = .libraryAdmin
-    let email: String
+struct LibraryAdmin: Identifiable,Codable,User{
+    let id: UUID
+    let role:Role
     let name: String
-    let mobNo: String
-//    let libraries: [UUID]
-//    let librarians: [UUID]
-    let libraries: [String]
-    let librarians: [String]
+    let email: String
+    let phone: String
+    let libraries: [UUID]
+    let librarians: [UUID]
     
 }
 
-struct Member: Identifiable{
-    let id = UUID()
-    let role: Role = .member
-    let email: String
+struct Member: Identifiable,Codable,User{
+    let id:UUID
+    let role: Role
     let name: String
-    let mobNo: String
+    let email: String
+    let phone: String
     let viewableLibraries: [UUID]
     let wishlistBooks: [UUID]
     let borrowedBooks: [UUID]
@@ -82,7 +90,7 @@ struct Issues: Identifiable{
 struct Library: Identifiable{
     let id = UUID()
     let librarianAssigned: UUID
-    let admin: UUID
+    let libraryAdmin: UUID
     let libraryName: String
     let libraryContact: String
     let libraryAddress: String

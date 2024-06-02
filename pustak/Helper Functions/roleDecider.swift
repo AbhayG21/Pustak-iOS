@@ -18,11 +18,10 @@ func checkUserRole(email: String, password: String) -> Role {
         return .libraryAdmin
     } else if email == "librarian@infy.com" && password == "librarian123" {
         return .librarian
-    } else if email == "member@infy.com" && password == "member123" {
-        return .member
     } else {
-        return .none
+        return .member
     }
+    
 }
 
 @ViewBuilder
@@ -34,8 +33,8 @@ func getDestinationView(for role: Role) -> some View {
         LibrarianMainView()
     case .member:
         EmptyView()
-    case .none:
-        Text("Invalid credentials")
-            .foregroundColor(.red)
+//    default:
+//        Text("Invalid credentials")
+//            .foregroundColor(.red)
     }
 }
