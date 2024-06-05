@@ -15,9 +15,10 @@ struct AddLibrary: View {
     @State private var address:String = ""
     @EnvironmentObject var adminManager:AdminManager
     @EnvironmentObject var userSession:UserSession
+    @StateObject var libraryCreate = AdminLibraryCreation()
     
     private func isAddDisabled()->Bool{
-        return libraryName.isEmpty || phone.isEmpty || email.isEmpty || address.isEmpty
+        return libraryName.isEmpty || phone.isEmpty || email.isEmpty || address.isEmpty || !isValidEmail(email)
     }
     var body: some View {
         NavigationStack{
@@ -25,10 +26,14 @@ struct AddLibrary: View {
             Form{
                 Section("Library Name"){
                     TextField("Name",text:$libraryName)
+                        .autocorrectionDisabled()
+                        
                 }
                 Section("Library Contact Details"){
                     TextField("Email",text:$email)
+                        .keyboardType(.emailAddress)
                     TextField("Phone",text:$phone)
+                        .keyboardType(.numberPad)
                 }
                 Section("Library Address"){
                     TextField("Address",text:$address)
@@ -55,7 +60,7 @@ struct AddLibrary: View {
                         let library = Library(adminID:admId, name: libraryName, contact: phone, address: address, email: email)
                         Task{
                             do{
-                                try await adminManager.createLibrary(with: library)
+                                try await libraryCreate.createLibrary(with: library, of: adminManager)
                             }catch{}
                         }
                         dismiss()

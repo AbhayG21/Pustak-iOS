@@ -9,16 +9,17 @@ import SwiftUI
 
 struct AdminLibrariesView: View {
     //    @EnvironmentObject var auth:AuthNetworkManager
-    @EnvironmentObject var libraryManager:AdminManager
+    @EnvironmentObject var userSession:UserSession
+    @EnvironmentObject var adminManager:AdminManager
     @State var isShowingAddItemView = false
     var body: some View {
         NavigationStack{
-            if(libraryManager.isLoading){
+            if(adminManager.isLoading){
                 ProgressView()
                     .onAppear(perform: {
                         Task{
                             do{
-                                try await libraryManager.fetchLibrary()
+                                try await adminManager.fetchLibrary(with:userSession.uId)
                             }
                             catch{}
                         }
@@ -32,7 +33,7 @@ struct AdminLibrariesView: View {
                         }
                     }
             }else{
-                if(libraryManager.libraries.count == 0){
+                if(adminManager.libraries.count == 0){
                     VStack (spacing: 12){
                         Image(systemName: "x.circle.fill")
                             .resizable()
@@ -53,14 +54,10 @@ struct AdminLibrariesView: View {
                         }
                     }
                 }else{
-                    //                    List(libraryManager.libraries){library in
-                    //                        LibraryCard(library:library)
-                    //                            .padding(.top,5)
-                    //                            .listRowSeparator(.hidden)
-                    //                    }
                     ScrollView{
                         VStack(spacing: 10) {
-                            ForEach(libraryManager.libraries) { library in
+                            ForEach(adminManager.libraries) { library in
+                                
                                 LibraryCard(library: library)
                                     .padding(.horizontal)
                             }

@@ -28,7 +28,7 @@ struct AuthResponse:Codable{
         self.message = try container.decode(String.self, forKey: .message)
         self.token = try container.decode(String.self, forKey: .token)
         self.role = try container.decode(Role.self, forKey: .role)
-
+        
         
         
         switch self.role {
@@ -55,11 +55,16 @@ struct AuthResponse:Codable{
         case .member:
             try container.encode(user as! Member, forKey: .user)
         }
-
+        
     }
 }
 struct LibraryResponse: Codable{
     var message: String
     var libraries: [Library]
     var librarians: [Librarian]
+}
+struct LibraryDetailResponse:Codable{
+    var message: String
+    var library: Library
+    var librarian: Librarian
 }

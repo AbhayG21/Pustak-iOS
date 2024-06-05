@@ -4,12 +4,10 @@ struct ContentView: View {
     @StateObject var userSession = UserSession()
     @StateObject var networkManager = AuthNetworkManager()
     @StateObject var adminManager = AdminManager()
-    
     var body: some View {
         if(networkManager.isLoading)
         {
             ProgressView()
-                .environmentObject(networkManager)
         }
         
         else{

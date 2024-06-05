@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AdminProfileView: View {
     @EnvironmentObject var userSession: UserSession
+    @EnvironmentObject var adminManager: AuthNetworkManager
     @State private var showingLogoutAlert = false
     var body: some View {
         NavigationStack {
@@ -40,13 +41,7 @@ struct AdminProfileView: View {
                     Button(action: {
                         showingLogoutAlert.toggle()
                     }) {
-                        Text("Logout")
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(Color.red)
-                            .cornerRadius(10)
+                        LogoutButton()
                     }
                     .padding(.horizontal)
                     .padding(.top, 10)

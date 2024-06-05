@@ -19,7 +19,7 @@ struct InputField: View {
     
     var body: some View {
         if(!isSecure){
-            TextField(placeholder, text: $text, onEditingChanged: onEditingChanged, onCommit: onCommit)
+            TextField(placeholder, text: $text)
                 .keyboardType(keyboardType(inputType))
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
@@ -28,7 +28,7 @@ struct InputField: View {
                 .overlay(RoundedRectangle(cornerRadius: cornerRadius).stroke(Color.accentColor))
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
         }else{
-            SecureField(placeholder, text: $text, onCommit: onCommit)
+            SecureField(placeholder, text: $text)
                 .padding()
                 .frame(height: 50)
                 .overlay(RoundedRectangle(cornerRadius: cornerRadius).stroke(Color.accentColor))
@@ -49,6 +49,6 @@ struct InputField: View {
     }
 }
 
-#Preview{
-    InitialView()
-}
+//#Preview{
+//    InitialView()
+//}

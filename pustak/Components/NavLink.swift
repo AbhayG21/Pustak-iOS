@@ -8,9 +8,6 @@
 import Foundation
 import SwiftUI
 
-import Foundation
-import SwiftUI
-
 struct NavLink: View {
     var text: String
     var cornerRadius: CGFloat
@@ -36,6 +33,6 @@ struct NavLink: View {
         
     }
 }
-#Preview{
-    InitialView()
-}
+//#Preview{
+//    InitialView()
+//}

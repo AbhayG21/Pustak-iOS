@@ -14,13 +14,14 @@ struct AssignLibrarian: View {
     @State var personalEmail:String = ""
     @State var officialEmail:String = ""
     
-    @EnvironmentObject var libraryManager:AdminManager
+    @EnvironmentObject var adminManager:AdminManager
     @EnvironmentObject var userSession:UserSession
+    @StateObject var adminAssignLibrarian = AdminAssignLibrarian()
     
     @State private var errorPresented: Bool = false
     var library:Library
     func isDisabled() -> Bool {
-            return name.isEmpty || phone.isEmpty || !isValidEmail(personalEmail) || !isValidEmail(officialEmail)
+        return name.isEmpty || phone.isEmpty || !isValidEmail(personalEmail) || !isValidEmail(officialEmail) || !isValidNumber(phone)
         }
     var body: some View {
         NavigationStack{
@@ -30,15 +31,16 @@ struct AssignLibrarian: View {
                     TextField(text: $name, label: {
                         Text("Full Name")
                     })
+                    
                     TextField(text:$phone,label:{
                         Text("Phone Number")
                     })
-                    
                     TextField(text:$personalEmail,label: {
                         Text("Librarian Personal Email")
                     }).keyboardType(.emailAddress)
                         .textInputAutocapitalization(.never)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 Section("Official Details")
                         {
                     TextField(text:$officialEmail,label:{
@@ -49,7 +51,6 @@ struct AssignLibrarian: View {
                 }
             }
             .toolbar{
-                
                 ToolbarItem(placement: .topBarLeading){
                     Button(action:{
                         dismiss()
@@ -62,16 +63,17 @@ struct AssignLibrarian: View {
                         
                         Task{
                             do{
-                                try await libraryManager.assignLibrarian(with: librarian, auth: userSession.token)
+                                try await adminAssignLibrarian.assignLibrarian(with: librarian, of: adminManager)
                                 
                                 DispatchQueue.main.async{
-                                    if(libraryManager.isError)
+                                    if(adminAssignLibrarian.isError)
                                     {
                                         errorPresented = true
                                     }
                                 }
                             }
                             dismiss()
+                            
                         }
                         
                     }){
