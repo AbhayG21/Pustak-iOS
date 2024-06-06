@@ -29,13 +29,13 @@
 		BE2E47B62C0CF90300804CA7 /* AssignButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E47B52C0CF90300804CA7 /* AssignButton.swift */; };
 		BE3C93A72C0A35FE0020AF6B /* APINetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */; };
 		BE6C0C4C2C0EC1D10008F986 /* isValidNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C4B2C0EC1D10008F986 /* isValidNumber.swift */; };
-		BE6C0C4E2C0EC3890008F986 /* CustomLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C4D2C0EC3890008F986 /* CustomLoader.swift */; };
 		BE6C0C502C0F05600008F986 /* getSetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C4F2C0F05600008F986 /* getSetData.swift */; };
 		BE6C0C522C0F195C0008F986 /* AdminLibraryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C512C0F195C0008F986 /* AdminLibraryDetailsView.swift */; };
 		BE6C0C702C1004090008F986 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C6F2C1004090008F986 /* ErrorHandling.swift */; };
 		BE6C0C722C10398C0008F986 /* fetchToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C712C10398C0008F986 /* fetchToken.swift */; };
 		BE6C0C742C104E5E0008F986 /* logoutUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C732C104E5E0008F986 /* logoutUser.swift */; };
 		BE6C0C772C1061250008F986 /* isValidText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C762C1061250008F986 /* isValidText.swift */; };
+		BE6C0C792C10AADB0008F986 /* LibrarianDetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C782C10AADB0008F986 /* LibrarianDetailsCard.swift */; };
 		BE836B152C073FCF00F56789 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE836B142C073FCE00F56789 /* InputField.swift */; };
 		BEA075A62C0D6C30005DD3F5 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA075A52C0D6C30005DD3F5 /* LogoutButton.swift */; };
 		BEF185A42C064FB0006CCD05 /* pustakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185A32C064FB0006CCD05 /* pustakApp.swift */; };
@@ -70,7 +70,6 @@
 		BE2E47B52C0CF90300804CA7 /* AssignButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignButton.swift; sourceTree = "<group>"; };
 		BE3C93A62C0A35FE0020AF6B /* APINetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetwork.swift; sourceTree = "<group>"; };
 		BE6C0C4B2C0EC1D10008F986 /* isValidNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isValidNumber.swift; sourceTree = "<group>"; };
-		BE6C0C4D2C0EC3890008F986 /* CustomLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoader.swift; sourceTree = "<group>"; };
 		BE6C0C4F2C0F05600008F986 /* getSetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getSetData.swift; sourceTree = "<group>"; };
 		BE6C0C512C0F195C0008F986 /* AdminLibraryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLibraryDetailsView.swift; sourceTree = "<group>"; };
 		BE6C0C6F2C1004090008F986 /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
@@ -78,6 +77,7 @@
 		BE6C0C732C104E5E0008F986 /* logoutUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logoutUser.swift; sourceTree = "<group>"; };
 		BE6C0C752C10559C0008F986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BE6C0C762C1061250008F986 /* isValidText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isValidText.swift; sourceTree = "<group>"; };
+		BE6C0C782C10AADB0008F986 /* LibrarianDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarianDetailsCard.swift; sourceTree = "<group>"; };
 		BE836B142C073FCE00F56789 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		BEA075A52C0D6C30005DD3F5 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
 		BEF185A02C064FB0006CCD05 /* pustak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pustak.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,7 +238,7 @@
 				BE2E47AB2C0C7AE000804CA7 /* LibraryCard.swift */,
 				BE2E47B52C0CF90300804CA7 /* AssignButton.swift */,
 				BEA075A52C0D6C30005DD3F5 /* LogoutButton.swift */,
-				BE6C0C4D2C0EC3890008F986 /* CustomLoader.swift */,
+				BE6C0C782C10AADB0008F986 /* LibrarianDetailsCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -326,7 +326,6 @@
 				BE0792042C0B43AF00424356 /* AdminProfileView.swift in Sources */,
 				BE6C0C742C104E5E0008F986 /* logoutUser.swift in Sources */,
 				BEF185BC2C0711E5006CCD05 /* SignUpView.swift in Sources */,
-				BE6C0C4E2C0EC3890008F986 /* CustomLoader.swift in Sources */,
 				BE07920A2C0B44EE00424356 /* LibrarianMainView.swift in Sources */,
 				BE6C0C502C0F05600008F986 /* getSetData.swift in Sources */,
 				BE2E47AA2C0C402000804CA7 /* Response.swift in Sources */,
@@ -343,6 +342,7 @@
 				BE2E47A82C0C3F5500804CA7 /* API_URL.swift in Sources */,
 				BE6C0C722C10398C0008F986 /* fetchToken.swift in Sources */,
 				BE2E47AE2C0C851C00804CA7 /* AddLibrary.swift in Sources */,
+				BE6C0C792C10AADB0008F986 /* LibrarianDetailsCard.swift in Sources */,
 				BE2E47B02C0CD0DF00804CA7 /* AddBookView.swift in Sources */,
 				BE0791F82C0AEB0300424356 /* AdminMainView.swift in Sources */,
 				BE0791FD2C0AEB7900424356 /* DataModel.swift in Sources */,

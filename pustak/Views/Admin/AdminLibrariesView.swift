@@ -11,6 +11,7 @@ struct AdminLibrariesView: View {
     //    @EnvironmentObject var auth:AuthNetworkManager
     @EnvironmentObject var userSession:UserSession
     @EnvironmentObject var adminManager:AdminManager
+    @StateObject var libraryDetailManager = AdminLibraryDetailManager()
     @State var isShowingAddItemView = false
     var body: some View {
         NavigationStack{
@@ -58,8 +59,16 @@ struct AdminLibrariesView: View {
                         VStack(spacing: 10) {
                             ForEach(adminManager.libraries) { library in
                                 
-                                LibraryCard(library: library)
-                                    .padding(.horizontal)
+//                                NavigationLink(destination:AdminLibraryDetailsView(library:library).environmentObject(libraryDetailManager)){
+                                ZStack{
+                                    LibraryCard(library: library)
+                                        .padding(.horizontal)
+                                        .environmentObject(libraryDetailManager)
+                                    
+                                    
+                                }
+//                                }
+//                                .disabled(library.librarianAssigned == nil)
                             }
                         }
                     }

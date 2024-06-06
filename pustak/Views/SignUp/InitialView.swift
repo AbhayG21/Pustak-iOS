@@ -89,36 +89,30 @@ struct InitialView: View {
                     VStack {
                         if isLoading {
                             ProgressView()
-                                .frame(width: 100, height: 50)
                         } else {
                             Button(action: {
                                 networkManager.isLoading = true
                                 Task{
                                     do{
-                                        let jsonData = try JSONSerialization.data(withJSONObject: ["email":email, "password":password])
-                                        
+                                        let jsonData = try JSONSerialization.data(withJSONObject: ["email": email, "password": password])
                                         try await networkManager.loginUser(with: jsonData)
-                                        
                                         DispatchQueue.main.async{
-                                            if(!networkManager.isError)
-                                            {
+                                            if(!networkManager.isError){
                                                 guard let token = UserDefaults.standard.object(forKey: "token") as? String,
-                                                      let roleVal =  UserDefaults.standard.object(forKey: "role") as? String,
-                                                      let role = Role(rawValue: roleVal)
-                                                else {
-                                                    return
-                                                }
+                                                      let roleString = UserDefaults.standard.object(forKey: "role") as? String,
+                                                      let uuidString = UserDefaults.standard.object(forKey: "id") as? String,
+                                                      let uId = UUID(uuidString: uuidString),
+                                                      let role = Role(rawValue: roleString)
+                                                else {return}
+                                                
                                                 userSession.role = role
                                                 userSession.token = token
+                                                userSession.uId = uId
                                                 userSession.isAuthenticated = true
                                                 networkManager.isLoading = false
                                             }
-//                                                else{
-//                                                print(networkManager.isError)
-//                                                networkManager.isLoading = false
-//                                            }
                                         }
-                                    }
+                                    }catch{}
                                 }
                             }) {
                                 NavLink(text: "Login", cornerRadius: 10)
@@ -156,15 +150,15 @@ struct InitialView: View {
         }
     }
     
-//    func loginUser() {
-//        isLoading = true
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            userRole = checkUserRole(email: email, password: password)
-//            isLoading = false
-//            userSession.isAuthenticated = true
-//            //            navigateToNextScreen = true
-//        }
-//    }
+    //    func loginUser() {
+    //        isLoading = true
+    //        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+    //            userRole = checkUserRole(email: email, password: password)
+    //            isLoading = false
+    //            userSession.isAuthenticated = true
+    //            //            navigateToNextScreen = true
+    //        }
+    //    }
 }
 
 

@@ -65,6 +65,5 @@ struct LibraryResponse: Codable{
 }
 struct LibraryDetailResponse:Codable{
     var message: String
-    var library: Library
     var librarian: Librarian
 }

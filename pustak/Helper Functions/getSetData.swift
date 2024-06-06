@@ -35,7 +35,6 @@ func getSetData(type: String, endpoint:String, token:String? = nil, body:Data? =
     do{
         let (data,response) = try await URLSession.shared.data(for: request)
         guard let response = response as? HTTPURLResponse else {throw ErrorResponse.serverError}
-        print("asdfasdfasdf")
         
         switch response.statusCode{
         case 400:

@@ -16,7 +16,7 @@ struct AddBookView: View {
     @State private var publisher:String = ""
     @State private var genre:Genre = .comedy
     @State private var nosPages:String = ""
-//    @State private var qty:Int
+    @State private var qty:String = ""
     @State private var aisle: String = "Select Aisle"
     @State private var bookDescription: String = ""
     @State private var showImagePicker = false
@@ -25,48 +25,15 @@ struct AddBookView: View {
     let genres = Genre.allCases.map{$0.rawValue}
     let aisles = ["A1", "A2", "B1", "B2", "C1", "C2"]
     
-    @Environment(\.presentationMode) var presentationMode
+//    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
             List {
                 Section {
-                    Button(action: {
-                        showImagePicker = true
-                    }) {
-                        if let selectedImage = selectedImage {
-                            Image(uiImage: selectedImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 150)
-                                .cornerRadius(10)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.gray, style: StrokeStyle(lineWidth: 1, dash: [5]))
-                                )
-                        } else {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color.gray.opacity(0.2))
-                                    .frame(width: 150, height: 240, alignment: .bottom)
-                                    .cornerRadius(10)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.gray, style: StrokeStyle(lineWidth: 1, dash: [5]))
-                                    )
-                                Image(systemName: "plus")
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                    }
-                    .sheet(isPresented: $showImagePicker) {
-                        ImagePicker(selectedImage: $selectedImage)
-                    }
-                }
-                
-                Section {
                     TextField("Book Name", text: $title)
-                    TextField("Author's Name", text: $author)
+                    TextField("Author Name", text: $author)
+                    TextField("Publisher Name", text:$publisher)
                 }
                 Section {
                     Picker("Genres", selection: $genre) {
@@ -76,27 +43,22 @@ struct AddBookView: View {
                     }
                     .pickerStyle(MenuPickerStyle())
                     
-                    Picker("Aisle", selection: $aisle) {
-                        ForEach(aisles, id: \.self) { aisle in
-                            Text(aisle)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
                     TextField("ISBN", text: $ISBN)
+                    TextField("Quantity",text: $qty)
                 }
-                Section {
-                    TextField("Book Description", text: $bookDescription)
+                Section("Book Description") {
+                    TextEditor(text: $bookDescription)
+                        .frame(height: 150)
                 }
-                .padding(.vertical, 50)
                 
             }
             .navigationBarTitle("New Book", displayMode: .inline)
             .navigationBarItems(leading: Button("Cancel", action: {
                 // Handle cancel action
-                presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
             }), trailing: Button("Add", action: {
                 // Handle add action
-                presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
             }))
         }
     }
@@ -140,4 +102,8 @@ struct ImagePicker: UIViewControllerRepresentable {
             }
         }
     }
+}
+
+#Preview{
+    AddBookView()
 }
