@@ -64,7 +64,7 @@ struct AddBookView: View {
                 Task{
                     do{
                         let libId = UUID(uuidString: libraryId)!
-                        let book = Books(id: UUID(), ISBN: ISBN, title: title, yearPublished: yearPublished, author: author, publisher: publisher, genre: genre, nosPages: nosPages, libraryId: libId, qty: qty)
+                        let book = Books(id: UUID(), ISBN: ISBN, title: title, yearPublished: yearPublished, author: author, publisher: publisher, genre: genre, nosPages: nosPages, libraryId: libId, qty: qty,timestamp: Date())
                         
                         try await addBookManager.addBook(with: book, of: librarianManager)
                         

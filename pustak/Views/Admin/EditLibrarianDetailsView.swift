@@ -44,7 +44,7 @@ struct EditLibrarianDetailsView: View {
                 
                 ToolbarItem(placement:.topBarTrailing){
                     Button(action:{
-                        let librarian = Librarian(id: librarian.id, role: .librarian, name: name, email: librarian.email, admin: userSession.uId, assignedLibrary: librarian.assignedLibrary, phone: phone, personalEmail: personalEmail)
+                        let librarian = Librarian(id: librarian.id, role: .librarian, name: name, email: librarian.email, admin: userSession.uId, assignedLibrary: librarian.assignedLibrary, phone: phone, personalEmail: personalEmail, timestamp: librarian.timestamp)
                         
                         Task{
                             do{

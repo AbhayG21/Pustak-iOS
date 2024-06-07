@@ -52,6 +52,6 @@ struct LibrarianDetailsCard: View {
     }
 }
 
-#Preview {
-    LibrarianDetailsCard(librarian: Librarian(id: UUID(), role: .librarian, name: "Manav", email: "manav@gmail.com", admin: UUID(), assignedLibrary: UUID(), phone: "9876543456789", personalEmail: "librarian@infosys.com"))
-}
+//#Preview {
+//    LibrarianDetailsCard(librarian: Librarian(id: UUID(), role: .librarian, name: "Manav", email: "manav@gmail.com", admin: UUID(), assignedLibrary: UUID(), phone: "9876543456789", personalEmail: "librarian@infosys.com"))
+//}

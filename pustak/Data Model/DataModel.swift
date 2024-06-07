@@ -47,6 +47,7 @@ struct Librarian: Identifiable,Codable,User{
     let assignedLibrary : UUID
     let phone : String
     let personalEmail: String
+    let timestamp:Date
 }
 
 struct LibraryAdmin: Identifiable,Codable,User{
@@ -57,6 +58,7 @@ struct LibraryAdmin: Identifiable,Codable,User{
     let phone: String
     let libraries: [UUID]
     let librarians: [UUID]
+    let timestamp:Date
     
 }
 
@@ -70,8 +72,13 @@ struct Member: Identifiable,Codable,User{
     let wishlistBooks: [UUID]
     let borrowedBooks: [UUID]
     let fine: [UUID]
+    let timestamp:Date
 }
-
+struct MemberSignUp: Codable{
+    let user:Member
+    let password:String
+    let timestamp:Date
+}
 struct Fine: Identifiable{
     let id = UUID()
     let userId: UUID
@@ -79,7 +86,9 @@ struct Fine: Identifiable{
     let finePaid: Bool
     let amount: String
     let libraryId: UUID
+    let timestamp:Date
 }
+
 
 struct Issues: Identifiable{
     let id = UUID()
@@ -87,6 +96,7 @@ struct Issues: Identifiable{
     let startDate: Date
     let userId: UUID
     let approved: Bool
+    let timestamp:Date
 }
 
 struct Library: Identifiable, Codable{
@@ -98,56 +108,61 @@ struct Library: Identifiable, Codable{
     let address: String
     let libraryEmail: String
     let books: [Books]
+    let timestamp:Date
     
     enum CodingKeys: String, CodingKey {
-            case id
-            case librarianAssigned
-            case libraryAdmin
-            case libraryName
-            case libraryContact
-            case address
-            case libraryEmail = "email"
-            case books
-        }
+        case id
+        case librarianAssigned
+        case libraryAdmin
+        case libraryName
+        case libraryContact
+        case address
+        case libraryEmail = "email"
+        case books
+        case timestamp
+    }
     
-    init(adminID: UUID, name: String, contact: String, address: String, email: String, libraryId id: UUID = UUID(), librarianAssigned libAss: UUID? = nil){
-            self.id = id
-            if let libAss = libAss {
-                self.librarianAssigned = libAss
-            }else{
-                librarianAssigned = nil
-            }
-            libraryAdmin = adminID
-            libraryName = name
-            libraryContact = contact
-            self.address = address
-            books =  []
-            libraryEmail = email
+    init(adminID: UUID, name: String, contact: String, address: String, email: String, libraryId id: UUID = UUID(), librarianAssigned libAss: UUID? = nil,timestamp: Date = Date()){
+        self.id = id
+        if let libAss = libAss {
+            self.librarianAssigned = libAss
+        }else{
+            librarianAssigned = nil
         }
+        libraryAdmin = adminID
+        libraryName = name
+        libraryContact = contact
+        self.address = address
+        books =  []
+        libraryEmail = email
+        self.timestamp = timestamp
+    }
     
     init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(UUID.self, forKey: .id)
-            librarianAssigned = try container.decodeIfPresent(UUID.self, forKey: .librarianAssigned)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        librarianAssigned = try container.decodeIfPresent(UUID.self, forKey: .librarianAssigned)
         libraryAdmin = try container.decode(UUID.self, forKey: .libraryAdmin)
-            libraryName = try container.decode(String.self, forKey: .libraryName)
-            libraryContact = try container.decode(String.self, forKey: .libraryContact)
-            address = try container.decode(String.self, forKey: .address)
-            libraryEmail = try container.decode(String.self, forKey: .libraryEmail)
-            books = try container.decode([Books].self, forKey: .books)
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encodeIfPresent(librarianAssigned, forKey: .librarianAssigned)
-            try container.encode(libraryAdmin, forKey: .libraryAdmin)
-            try container.encode(libraryName, forKey: .libraryName)
-            try container.encode(libraryContact, forKey: .libraryContact)
-            try container.encode(address, forKey: .address)
-            try container.encode(libraryEmail, forKey: .libraryEmail)
-            try container.encode(books, forKey: .books)
-        }
+        libraryName = try container.decode(String.self, forKey: .libraryName)
+        libraryContact = try container.decode(String.self, forKey: .libraryContact)
+        address = try container.decode(String.self, forKey: .address)
+        libraryEmail = try container.decode(String.self, forKey: .libraryEmail)
+        books = try container.decode([Books].self, forKey: .books)
+        timestamp = try container.decode(Date.self, forKey: .timestamp)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(librarianAssigned, forKey: .librarianAssigned)
+        try container.encode(libraryAdmin, forKey: .libraryAdmin)
+        try container.encode(libraryName, forKey: .libraryName)
+        try container.encode(libraryContact, forKey: .libraryContact)
+        try container.encode(address, forKey: .address)
+        try container.encode(libraryEmail, forKey: .libraryEmail)
+        try container.encode(books, forKey: .books)
+        try container.encode(timestamp,forKey: .timestamp)
+    }
 }
 
 struct Books: Identifiable,Codable{
@@ -161,4 +176,5 @@ struct Books: Identifiable,Codable{
     let nosPages: String
     let libraryId: UUID
     let qty: String
+    let timestamp:Date
 }

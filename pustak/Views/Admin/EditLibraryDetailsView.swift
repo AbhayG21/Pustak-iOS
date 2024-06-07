@@ -45,7 +45,7 @@ struct EditLibraryDetailsView: View {
                 }
                 ToolbarItem(placement:.topBarTrailing){
                     Button(action:{
-                        let library = Library(adminID: userSession.uId, name: libraryName, contact:phone, address:address, email: email, libraryId: library.id, librarianAssigned: library.librarianAssigned)
+                        let library = Library(adminID: userSession.uId, name: libraryName, contact:phone, address:address, email: email, libraryId: library.id, librarianAssigned: library.librarianAssigned, timestamp: library.timestamp)
                         Task{
                             do{
                                 try await adminUpdateLibraryManager.updateLibrary(with: library, of: adminManager)
@@ -68,8 +68,3 @@ struct EditLibraryDetailsView: View {
         
     }
 }
-
-
-//#Preview {
-//    EditLibraryDetailsView()
-//}

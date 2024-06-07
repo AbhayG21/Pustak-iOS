@@ -59,7 +59,7 @@ struct AssignLibrarian: View {
                 ToolbarItem(placement: .topBarTrailing)
                 {
                     Button(action:{
-                        let librarian = Librarian(id: UUID(), role: .librarian, name: name, email: officialEmail, admin: userSession.uId, assignedLibrary: library.id, phone: phone, personalEmail: personalEmail)
+                        let librarian = Librarian(id: UUID(), role: .librarian, name: name, email: officialEmail, admin: userSession.uId, assignedLibrary: library.id, phone: phone, personalEmail: personalEmail, timestamp: Date())
                         
                         Task{
                             do{
