@@ -55,7 +55,7 @@ class AuthNetworkManager: ObservableObject,ErrorHandling{
                 }
             }catch{
                 guard let error = error as? ErrorResponse else {return}
-//                self.isLoading = false
+                //                self.isLoading = false
                 self.errorHandler(error)
             }
         }
@@ -82,6 +82,8 @@ class AuthNetworkManager: ObservableObject,ErrorHandling{
         }
         
     }
+    
+    //    func signUp(with data:Data)
 }
 
 class AdminManager: ObservableObject,ErrorHandling{
@@ -150,7 +152,82 @@ class AdminAssignLibrarian: ObservableObject,ErrorHandling{
         }
     }
 }
+class AdminUpdateLibrarianManager:ObservableObject,ErrorHandling{
+    @Published var isLoading: Bool = false
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
+    
+    func updateLibrarianDetails(with librarian:Librarian, of instance:AdminManager) async throws{
+        do{
+            let body = try JSONEncoder().encode(librarian)
+            let _ = try await getSetData(type: "POST", endpoint: "librarian/update",token: fetchToken(),body:body)
+            
+            DispatchQueue.main.async{
+                let idxToUpdate = instance.libraries.firstIndex(where: {$0.id == librarian.assignedLibrary})!
+                instance.libraries[idxToUpdate].librarianAssigned = librarian.id
+            }
+        }catch{
+            guard let error = error as? ErrorResponse else {return}
+            self.errorHandler(error)
+        }
+    }
+}
+class AdminRevokeLibrarianManager:ObservableObject, ErrorHandling{
+    @Published var isLoading: Bool = false
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
+    
+    func revokeLibrarian(with id:UUID, of instance:AdminManager) async throws{
+        do{
+            let _ = try await getSetData(type: "PUT", endpoint: "librarian/remove/\(id.uuidString)",token: fetchToken())
+            
+            DispatchQueue.main.async{
+                let idxToUpdate = instance.libraries.firstIndex(where: {$0.librarianAssigned == id})!
+                instance.libraries[idxToUpdate].librarianAssigned = nil
+            }
+            
+        }catch{
+            guard let error = error as? ErrorResponse else {return}
+            self.errorHandler(error)
+        }
+    }
+}
 
+class AdminDetailsManager:ObservableObject, ErrorHandling{
+    @Published var isLoading: Bool = false
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
+    
+    func getAdminDetails() async throws{
+        do{
+            
+        }catch{
+            guard let error = error as? ErrorResponse else {return}
+            self.errorHandler(error)
+        }
+    }
+}
+
+class AdminUpdateLibraryManager:ObservableObject, ErrorHandling{
+    @Published var isLoading: Bool = false
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
+    func updateLibrary(with library:Library, of instance:AdminManager) async throws{
+        do{
+            let body = try JSONEncoder().encode(library)
+            let _ = try await getSetData(type: "POST", endpoint: "library/update",token: fetchToken(),body: body)
+            DispatchQueue.main.async{
+                let idxToUpdate = instance.libraries.firstIndex(where: {$0.id == library.id})!
+                instance.libraries[idxToUpdate] = library
+                self.isLoading = false
+            }
+            
+        }catch{
+            guard let error = error as? ErrorResponse else {return}
+            self.errorHandler(error)
+        }
+    }
+}
 
 class AdminLibraryDetailManager: ObservableObject, ErrorHandling{
     @Published var librarian: Librarian?
@@ -176,27 +253,109 @@ class AdminLibraryDetailManager: ObservableObject, ErrorHandling{
 }
 
 
+
 class GetLibraryManager:ObservableObject, ErrorHandling{
     @Published var libraryId:String = ""
     @Published var isLoading: Bool = false
     @Published var isError: Bool = false
     @Published var errorMessage: String = ""
     
-    func getLibraryId( ) async throws{
-        
+    func getLibraryId(with id:UUID) async throws{
+        do{
+            let data = try await getSetData(type: "GET", endpoint: "library/\(id)",token: fetchToken())
+            let decodedData = try JSONDecoder().decode(LibraryIdResponse.self, from: data!)
+            DispatchQueue.main.async{
+                self.libraryId = decodedData.library.id.uuidString
+                self.isLoading = false
+            }
+        }catch{
+            guard let error = error as? ErrorResponse else {return}
+            self.errorHandler(error)
+        }
     }
 }
 
 class LibrarianFetchBookManager:ObservableObject, ErrorHandling{
-    @Published var Book: [Books] = []
+    @Published var books: [Books] = []
     @Published var isLoading: Bool = false
     @Published var isError: Bool = false
     @Published var errorMessage: String = ""
     
     func fetchBooks(with id:UUID) async throws{
         do{
-            let data = try await getSetData(type: "GET", endpoint: "book/", token: fetchToken())
+            let data = try await getSetData(type: "GET", endpoint: "book/all/\(id)", token: fetchToken())
+            let decodedData = try JSONDecoder().decode(BooksResponse.self, from: data!)
+            DispatchQueue.main.async{
+                self.books = decodedData.books
+                self.isLoading = false
+            }
+        }catch{
+            guard let error  = error as? ErrorResponse else {return}
+            self.errorHandler(error)
         }
     }
     
+}
+
+class LibrarianAddBookManager:ObservableObject, ErrorHandling{
+    @Published var isLoading: Bool = false
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
+    
+    func addBook(with book:Books, of instance:LibrarianFetchBookManager) async throws{
+        do{
+            let body = try JSONEncoder().encode(book)
+            let _ = try await getSetData(type: "POST", endpoint: "book/create",token: fetchToken(),body:body)
+            DispatchQueue.main.async{
+                instance.books.insert(book,at:0)
+                self.isLoading = false
+            }
+            
+        }catch{
+            guard let error = error as? ErrorResponse else {return}
+            self.errorHandler(error)
+        }
+    }
+}
+
+class LibrarianUpdateBookManager:ObservableObject, ErrorHandling{
+    @Published var isLoading: Bool = false
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
+    
+    func updateBook(with book:Books, of instance:LibrarianFetchBookManager) async throws{
+        do{
+            let body = try JSONEncoder().encode(book)
+            let _ = try await getSetData(type: "POST", endpoint: "book/update",token: fetchToken(),body: body)
+            DispatchQueue.main.async{
+                let idxToUpdate = instance.books.firstIndex(where: {$0.id == book.id})!
+                instance.books[idxToUpdate] = book
+                self.isLoading = false
+            }
+            
+        }catch{
+            guard let error = error as? ErrorResponse else {return}
+            self.errorHandler(error)
+        }
+    }
+}
+class LibrarianDeleteBookManager:ObservableObject,ErrorHandling{
+    @Published var isLoading: Bool = false
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
+    
+    func deleteBook(with book:Books, of instance:LibrarianFetchBookManager) async throws{
+        do{
+            let body = try JSONEncoder().encode(book)
+            let _ =  try await getSetData(type: "POST", endpoint: "book/remove",token: fetchToken(),body:body)
+            DispatchQueue.main.async{
+                let idxToUpdate = instance.books.firstIndex(where: {$0.id == book.id})!
+                instance.books.remove(at: idxToUpdate)
+                self.isLoading = false
+            }
+        }catch{
+            guard let error = error as? ErrorResponse else {return}
+            self.errorHandler(error)
+        }
+    }
 }

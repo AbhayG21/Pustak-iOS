@@ -67,3 +67,13 @@ struct LibraryDetailResponse:Codable{
     var message: String
     var librarian: Librarian
 }
+struct LibraryIdResponse:Codable{
+    var message:String
+    var library:Library
+}
+
+struct BooksResponse:Codable
+{
+    var message:String
+    var books:[Books]
+}
