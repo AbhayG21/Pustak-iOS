@@ -10,8 +10,10 @@ import SwiftUI
 struct AdminLibraryDetailsView: View {
     @EnvironmentObject var userSession:UserSession
     @EnvironmentObject var libraryDetailManager:AdminLibraryDetailManager
+    @EnvironmentObject var adminManager:AdminManager
+    @StateObject var adminRevokeLibrarian = AdminRevokeLibrarianManager()
     @Environment (\.dismiss) var dismiss
-    
+    @State var isEditShown = false
     
     @State var isErrorShown: Bool = false
     var library:Library
@@ -53,12 +55,39 @@ struct AdminLibraryDetailsView: View {
                         Text("\(library.books.count)")
                             .foregroundColor(.secondary)
                     }
+                    Button(action:{
+                        isEditShown = true
+                    }){
+                        Text("Edit library details")
+                    }
                 }
-                
                 if(library.librarianAssigned != nil)
                 {
                     LibrarianDetailsCard(librarian: libraryDetailManager.librarian)
+                    Button(action:{
+                        
+                    }){
+                        Text("Revoke Librarian")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(Color.accentColor)
+                            .cornerRadius(10)
+                    }
+                    Button(action:{
+                        
+                    }){
+                        Text("Delete Library")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(Color.red)
+                            .cornerRadius(10)
+                    }
                 }
+                
                 else{
                     Text("No librarian assigned")
                         .font(.largeTitle)
@@ -72,11 +101,10 @@ struct AdminLibraryDetailsView: View {
             libraryDetailManager.isLoading = true
             Task{
                 do{
-                    try await libraryDetailManager.fetchLibraryDetails(id: library.id.uuidString)
+                    try await libraryDetailManager.fetchLibraryDetails(id: library.librarianAssigned!.uuidString)
                     DispatchQueue.main.async{
                         if(libraryDetailManager.isError)
                         {
-                            print("huihui")
                             isErrorShown = true
                         }
                         else{
@@ -96,6 +124,10 @@ struct AdminLibraryDetailsView: View {
             }
         } message: {
             Text(libraryDetailManager.errorMessage)
+        }
+        .sheet(isPresented:$isEditShown){
+            EditLibraryDetailsView(library:library)
+            
         }
     }
 }

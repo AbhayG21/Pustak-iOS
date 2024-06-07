@@ -8,36 +8,46 @@
 import SwiftUI
 
 struct LibrarianDetailsCard: View {
+    @State var isEditShown = false
     var librarian:Librarian?
     var body: some View {
         if let librarian = librarian{
-                Section("Librarian details")
-                {
-                    HStack {
-                        Text("Name")
-                        Spacer()
-                        Text(librarian.name)
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("Email")
-                        Spacer()
-                        Text(librarian.email)
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("Contact")
-                        Spacer()
-                        Text(librarian.phone)
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("Official Email")
-                        Spacer()
-                        Text(librarian.personalEmail)
-                            .foregroundColor(.secondary)
-                    }
+            Section("Librarian details")
+            {
+                HStack {
+                    Text("Name")
+                    Spacer()
+                    Text(librarian.name)
+                        .foregroundColor(.secondary)
                 }
+                HStack {
+                    Text("Email")
+                    Spacer()
+                    Text(librarian.email)
+                        .foregroundColor(.secondary)
+                }
+                HStack {
+                    Text("Contact")
+                    Spacer()
+                    Text(librarian.phone)
+                        .foregroundColor(.secondary)
+                }
+                HStack {
+                    Text("Official Email")
+                    Spacer()
+                    Text(librarian.personalEmail)
+                        .foregroundColor(.secondary)
+                }
+                Button(action:{
+                    isEditShown = true
+                }){
+                    Text("Edit library details")
+                }
+            }
+            .sheet(isPresented:$isEditShown)
+            {
+                EditLibrarianDetailsView(librarian:librarian)
+            }
         }
     }
 }

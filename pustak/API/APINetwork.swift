@@ -157,14 +157,13 @@ class AdminUpdateLibrarianManager:ObservableObject,ErrorHandling{
     @Published var isError: Bool = false
     @Published var errorMessage: String = ""
     
-    func updateLibrarianDetails(with librarian:Librarian, of instance:AdminManager) async throws{
+    func updateLibrarianDetails(with librarian:Librarian, of instance:AdminLibraryDetailManager) async throws{
         do{
             let body = try JSONEncoder().encode(librarian)
             let _ = try await getSetData(type: "POST", endpoint: "librarian/update",token: fetchToken(),body:body)
             
             DispatchQueue.main.async{
-                let idxToUpdate = instance.libraries.firstIndex(where: {$0.id == librarian.assignedLibrary})!
-                instance.libraries[idxToUpdate].librarianAssigned = librarian.id
+                instance.librarian = librarian
             }
         }catch{
             guard let error = error as? ErrorResponse else {return}
@@ -172,6 +171,7 @@ class AdminUpdateLibrarianManager:ObservableObject,ErrorHandling{
         }
     }
 }
+
 class AdminRevokeLibrarianManager:ObservableObject, ErrorHandling{
     @Published var isLoading: Bool = false
     @Published var isError: Bool = false
@@ -223,6 +223,7 @@ class AdminUpdateLibraryManager:ObservableObject, ErrorHandling{
             }
             
         }catch{
+            print(error)
             guard let error = error as? ErrorResponse else {return}
             self.errorHandler(error)
         }
@@ -238,13 +239,17 @@ class AdminLibraryDetailManager: ObservableObject, ErrorHandling{
     func fetchLibraryDetails(id: String) async throws {
         do{
             let data = try await getSetData(type:"GET", endpoint: "librarian/\(id)", token: fetchToken())
+            print("DATA")
+            print(String(data: data!, encoding: .utf8)!)
             let decodedData = try JSONDecoder().decode(LibraryDetailResponse.self, from: data!)
-            
+            print("HUIHUI")
+            print( decodedData)
             DispatchQueue.main.async{
                 self.librarian = decodedData.librarian
                 self.isLoading = false
             }
         }catch{
+            print(error)
             guard let error = error as? ErrorResponse else {return}
             self.errorHandler(error)
         }

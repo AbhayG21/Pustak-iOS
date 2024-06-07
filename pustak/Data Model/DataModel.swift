@@ -110,9 +110,13 @@ struct Library: Identifiable, Codable{
             case books
         }
     
-    init(adminID: UUID, name: String, contact: String, address: String, email: String){
-            id = UUID()
-            librarianAssigned = nil
+    init(adminID: UUID, name: String, contact: String, address: String, email: String, libraryId id: UUID = UUID(), librarianAssigned libAss: UUID? = nil){
+            self.id = id
+            if let libAss = libAss {
+                self.librarianAssigned = libAss
+            }else{
+                librarianAssigned = nil
+            }
             libraryAdmin = adminID
             libraryName = name
             libraryContact = contact

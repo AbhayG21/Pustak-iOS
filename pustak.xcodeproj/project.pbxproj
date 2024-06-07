@@ -36,6 +36,8 @@
 		BE6C0C742C104E5E0008F986 /* logoutUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C732C104E5E0008F986 /* logoutUser.swift */; };
 		BE6C0C772C1061250008F986 /* isValidText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C762C1061250008F986 /* isValidText.swift */; };
 		BE6C0C792C10AADB0008F986 /* LibrarianDetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C782C10AADB0008F986 /* LibrarianDetailsCard.swift */; };
+		BE6C0C7B2C12E7BD0008F986 /* EditLibraryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C7A2C12E7BD0008F986 /* EditLibraryDetailsView.swift */; };
+		BE6C0C7D2C12E9950008F986 /* EditLibrarianDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C0C7C2C12E9950008F986 /* EditLibrarianDetailsView.swift */; };
 		BE836B152C073FCF00F56789 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE836B142C073FCE00F56789 /* InputField.swift */; };
 		BEA075A62C0D6C30005DD3F5 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA075A52C0D6C30005DD3F5 /* LogoutButton.swift */; };
 		BEF185A42C064FB0006CCD05 /* pustakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF185A32C064FB0006CCD05 /* pustakApp.swift */; };
@@ -78,6 +80,8 @@
 		BE6C0C752C10559C0008F986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BE6C0C762C1061250008F986 /* isValidText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isValidText.swift; sourceTree = "<group>"; };
 		BE6C0C782C10AADB0008F986 /* LibrarianDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarianDetailsCard.swift; sourceTree = "<group>"; };
+		BE6C0C7A2C12E7BD0008F986 /* EditLibraryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLibraryDetailsView.swift; sourceTree = "<group>"; };
+		BE6C0C7C2C12E9950008F986 /* EditLibrarianDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLibrarianDetailsView.swift; sourceTree = "<group>"; };
 		BE836B142C073FCE00F56789 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		BEA075A52C0D6C30005DD3F5 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
 		BEF185A02C064FB0006CCD05 /* pustak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pustak.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +124,8 @@
 				BE0792032C0B43AF00424356 /* AdminProfileView.swift */,
 				BE2E47AD2C0C851C00804CA7 /* AddLibrary.swift */,
 				BE6C0C512C0F195C0008F986 /* AdminLibraryDetailsView.swift */,
+				BE6C0C7A2C12E7BD0008F986 /* EditLibraryDetailsView.swift */,
+				BE6C0C7C2C12E9950008F986 /* EditLibrarianDetailsView.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 				BE836B152C073FCF00F56789 /* InputField.swift in Sources */,
 				BE6C0C702C1004090008F986 /* ErrorHandling.swift in Sources */,
 				BE0792022C0B42B100424356 /* AdminHomeView.swift in Sources */,
+				BE6C0C7B2C12E7BD0008F986 /* EditLibraryDetailsView.swift in Sources */,
 				BEF185A62C064FB0006CCD05 /* ContentView.swift in Sources */,
 				BE07920E2C0B452200424356 /* LibrarianProfileView.swift in Sources */,
 				BE0792042C0B43AF00424356 /* AdminProfileView.swift in Sources */,
@@ -338,6 +345,7 @@
 				BE07920C2C0B451600424356 /* LibrarianHomeView.swift in Sources */,
 				BEF185A42C064FB0006CCD05 /* pustakApp.swift in Sources */,
 				BE3C93A72C0A35FE0020AF6B /* APINetwork.swift in Sources */,
+				BE6C0C7D2C12E9950008F986 /* EditLibrarianDetailsView.swift in Sources */,
 				BE6C0C522C0F195C0008F986 /* AdminLibraryDetailsView.swift in Sources */,
 				BE2E47A82C0C3F5500804CA7 /* API_URL.swift in Sources */,
 				BE6C0C722C10398C0008F986 /* fetchToken.swift in Sources */,
