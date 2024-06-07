@@ -65,6 +65,12 @@ struct AdminLibraryDetailsView: View {
                 {
                     LibrarianDetailsCard(librarian: libraryDetailManager.librarian)
                     Button(action:{
+                        Task{
+                            do{
+                                try await adminRevokeLibrarian.revokeLibrarian(with: library.librarianAssigned!, of: adminManager, of2: libraryDetailManager)
+                            }catch{}
+                        }
+                        dismiss()
                         
                     }){
                         Text("Revoke Librarian")
@@ -76,7 +82,6 @@ struct AdminLibraryDetailsView: View {
                             .cornerRadius(10)
                     }
                     Button(action:{
-                        
                     }){
                         Text("Delete Library")
                             .fontWeight(.bold)

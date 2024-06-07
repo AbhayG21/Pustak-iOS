@@ -177,13 +177,15 @@ class AdminRevokeLibrarianManager:ObservableObject, ErrorHandling{
     @Published var isError: Bool = false
     @Published var errorMessage: String = ""
     
-    func revokeLibrarian(with id:UUID, of instance:AdminManager) async throws{
+    func revokeLibrarian(with id:UUID, of instance:AdminManager, of2 instance2:AdminLibraryDetailManager) async throws{
         do{
             let _ = try await getSetData(type: "PUT", endpoint: "librarian/remove/\(id.uuidString)",token: fetchToken())
             
             DispatchQueue.main.async{
                 let idxToUpdate = instance.libraries.firstIndex(where: {$0.librarianAssigned == id})!
                 instance.libraries[idxToUpdate].librarianAssigned = nil
+                
+                instance2.librarian = nil
             }
             
         }catch{
@@ -238,7 +240,7 @@ class AdminLibraryDetailManager: ObservableObject, ErrorHandling{
     
     func fetchLibraryDetails(id: String) async throws {
         do{
-            let data = try await getSetData(type:"GET", endpoint: "librarian/\(id)", token: fetchToken())
+            let data = try await getSetData(type:"GET", endpoint: "librarian/all/\(id)", token: fetchToken())
             print("DATA")
             print(String(data: data!, encoding: .utf8)!)
             let decodedData = try JSONDecoder().decode(LibraryDetailResponse.self, from: data!)
