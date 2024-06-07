@@ -32,6 +32,6 @@ struct AdminMainView: View {
         
 }
 
-#Preview {
-    AdminMainView()
-}
+//#Preview {
+//    AdminMainView()
+//}

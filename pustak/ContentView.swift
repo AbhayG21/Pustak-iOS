@@ -4,7 +4,7 @@ struct ContentView: View {
     @StateObject var userSession = UserSession()
     @StateObject var networkManager = AuthNetworkManager()
     @StateObject var adminManager = AdminManager()
-    
+    @StateObject var librarianManager = LibrarianFetchBookManager()
     var body: some View {
         if(networkManager.isLoading)
         {
@@ -32,7 +32,7 @@ struct ContentView: View {
                 case .librarian:
                     LibrarianMainView()
                         .environmentObject(userSession)
-                        .environmentObject(adminManager)
+                        .environmentObject(librarianManager)
                 case .member:
                     EmptyView()
                         .environmentObject(userSession)

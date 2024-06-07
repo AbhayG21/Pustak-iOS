@@ -9,6 +9,9 @@ import SwiftUI
 import PhotosUI
 
 struct AddBookView: View {
+    @EnvironmentObject var userSession:UserSession
+    @EnvironmentObject var librarianManager:LibrarianFetchBookManager
+    @StateObject var addBookManager = LibrarianAddBookManager()
     @State private var title: String = ""
     @State private var ISBN: String = ""
     @State private var author: String = ""
@@ -21,7 +24,7 @@ struct AddBookView: View {
     let genres = Genre.allCases.map{$0.rawValue}
     
     @Environment(\.dismiss) var dismiss
-    
+    var libraryId:String
     var body: some View {
         NavigationView {
             List {
@@ -58,7 +61,15 @@ struct AddBookView: View {
                 // Handle cancel action
                 dismiss()
             }), trailing: Button("Add", action: {
-                // Handle add action
+                Task{
+                    do{
+                        let libId = UUID(uuidString: libraryId)!
+                        let book = Books(id: UUID(), ISBN: ISBN, title: title, yearPublished: yearPublished, author: author, publisher: publisher, genre: genre, nosPages: nosPages, libraryId: libId, qty: qty)
+                        
+                        try await addBookManager.addBook(with: book, of: librarianManager)
+                        
+                    }catch{}
+                }
                 dismiss()
             }))
         }
@@ -66,6 +77,6 @@ struct AddBookView: View {
 }
 
 
-#Preview{
-    AddBookView()
-}
+//#Preview{
+//    AddBookView()
+//}

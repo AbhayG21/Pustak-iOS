@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LibrarianMainView: View {
-    @EnvironmentObject var libraryManager:AdminManager
+    @EnvironmentObject var libraryManager:LibrarianFetchBookManager
     var body: some View {
         TabView{
             LibrarianHomeView().tabItem {
@@ -31,6 +31,6 @@ struct LibrarianMainView: View {
     }
 }
 
-#Preview {
-    LibrarianMainView()
-}
+//#Preview {
+//    LibrarianMainView()
+//}
